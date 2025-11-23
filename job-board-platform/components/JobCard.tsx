@@ -1,26 +1,22 @@
-import { Building2, Clock3, MapPin } from "lucide-react";
+import { lighten, randomHexColor, timeAgo } from "@/utils";
+import { CircleDollarSign, Clock3, MapPin } from "lucide-react";
 import Button from "./common/Button";
 
-interface JobCardProps {
-  job: {
-    logoBg: string;
-    logoColor: string;
-    posted: string;
-    title: string;
-    company: string;
-    type: string;
-    level: string;
-    location: string;
-  };
-}
+export default function JobCard({ job }: { job: JobCardProps }) {
+  const base = randomHexColor();
+  const bg = lighten(base, 0.1); // very light version
+  const text = base;
 
-export default function JobCard({ job }: JobCardProps) {
   return (
     <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow group">
       <div className="flex justify-between items-start mb-4">
         <div className="flex gap-3">
           <div
-            className={`w-12 h-12 rounded-full font-bold text-xl flex items-center justify-center ${job.logoBg} ${job.logoColor}`}
+            className={`w-12 h-12 rounded-full font-bold text-xl flex items-center justify-center `}
+            style={{
+              backgroundColor: bg,
+              color: text,
+            }}
           >
             {job.company.charAt(0)}
           </div>
@@ -32,16 +28,19 @@ export default function JobCard({ job }: JobCardProps) {
           </div>
         </div>
         <span className="text-xs font-medium text-gray-400 flex items-center gap-1">
-          <Clock3 size={16} className="inline-block" />  {job.posted}</span>
+          <Clock3 size={16} className="inline-block" /> {timeAgo(job.postedAt)}
+        </span>
       </div>
 
       <div className="flex flex-wrap gap-2 mb-4">
-        <span className="px-2.5 py-1 rounded-md bg-gray-50 text-xs text-gray-600 font-medium border border-gray-100">
-          {job.type}
-        </span>
-        <span className="px-2.5 py-1 rounded-md bg-gray-50 text-xs text-gray-600 font-medium border border-gray-100">
-          {job.level}
-        </span>
+        {job.tags.map((tag, idx) => (
+          <span
+            key={idx}
+            className="px-2.5 py-1 rounded-md bg-gray-50 text-xs text-gray-600 font-medium border border-gray-100"
+          >
+            {tag}
+          </span>
+        ))}
       </div>
 
       <div className="flex items-center justify-between border-gray-50">
@@ -51,8 +50,8 @@ export default function JobCard({ job }: JobCardProps) {
             {job.location}
           </div>
           <div className="flex gap-2">
-            <MapPin size={14} />
-            {150000}
+            <CircleDollarSign size={14} />
+            {job.salary.min} - {job.salary.max}
           </div>
         </div>
         <Button variant="primary" className="md:group-hover:scale-105">

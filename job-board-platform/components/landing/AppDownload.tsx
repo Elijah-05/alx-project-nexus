@@ -23,7 +23,7 @@ export default function AppDownload() {
           </h2>
 
           <p className="text-gray-600 text-base leading-relaxed mb-8">
-            It won't be a bigger problem to find one video game lover in your
+            It won&apos;t be a bigger problem to find one video game lover in your
             neighbor. Since the introduction of Virtual Game, it has been
             achieving great heights so far as its popularity and technological
             advancement are concerned.

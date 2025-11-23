@@ -3,7 +3,7 @@ const backgroundImageUrl = "/assets/image/man-with-briefcase.jpg";
 
 export default function Hero() {
   return (
-    <section className="h-screen relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+    <section className="h-[600px] lg:h-[700px] relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center items-center h-full">
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12">
           <div className="flex-1 flex flex-col items-center text-center">
@@ -13,7 +13,7 @@ export default function Hero() {
             </h1>
             <p className="text-lg md:text-xl text-[#F2F2F2] mb-8 max-w-lg md:max-w-2xl mx-auto lg:mx-0">
               Your career path is unique. We bring together jobs, companies, and
-              community to help you find what's next.
+              community to help you find what&apos;s next.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-3 max-w-lg mx-auto lg:mx-0">

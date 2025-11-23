@@ -1,3 +1,5 @@
+'use client'
+
 import { cn } from "@/utils";
 
 interface ButtonProps {
@@ -5,6 +7,7 @@ interface ButtonProps {
   variant?: "primary" | "outline" | "white" | "ghost";
   className?: string;
   fullWidth?: boolean;
+  onClick?: () => void;
 }
 
 export default function Button({
@@ -12,6 +15,7 @@ export default function Button({
   variant = "primary",
   className = "",
   fullWidth = false,
+  onClick,
 }: ButtonProps) {
   const baseStyles =
     "px-6 py-2.5 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2";
@@ -25,10 +29,12 @@ export default function Button({
 
   return (
     <button
+      type="button"
       className={cn(
         `${baseStyles} ${variants[variant]} ${fullWidth ? "w-full" : ""}`,
         className
       )}
+      onClick={() => onClick?.()}
     >
       {children}
     </button>

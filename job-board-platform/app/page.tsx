@@ -11,7 +11,6 @@ import StatsSection from "@/components/landing/StatSection";
 export default function Home() {
   return (
     <div className="min-h-screen bg-white font-sans text-gray-900">
-      <Navbar />
       <main>
         <Hero />
         <StatsSection />
