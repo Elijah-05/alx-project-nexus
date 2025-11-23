@@ -2,8 +2,9 @@ import Button from "../common/Button";
 const backgroundImageUrl = "/assets/image/man-with-briefcase.jpg";
 
 export default function Hero() {
+
   return (
-    <section className="h-[600px] lg:h-[700px] relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+    <section className="h-screen sm:h-[600px] lg:h-[700px] relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center items-center h-full">
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12">
           <div className="flex-1 flex flex-col items-center text-center">
@@ -20,6 +21,7 @@ export default function Hero() {
               <Button
                 variant="ghost"
                 className="w-full text-white border border-white py-3 px-8"
+                navigateTo="/jobs"
               >
                 Find a Jobs
               </Button>

@@ -62,3 +62,28 @@ export function randomHexColor() {
 
   return "#" + [r, g, b].map((x) => x.toString(16).padStart(2, "0")).join("");
 }
+
+// utils/moneyFormatter.ts
+
+export function formatMoney(
+  amount: number | string,
+  currency: string = "USD",
+  locale: string = "en-US",
+  minimumFractionDigits: number = 0,
+  maximumFractionDigits: number = 2
+): string {
+  const value = Number(amount);
+  if (isNaN(value)) return "0";
+
+  try {
+    return new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency,
+      minimumFractionDigits,
+      maximumFractionDigits,
+    }).format(value);
+  } catch {
+    // fallback if Intl breaks (invalid currency code)
+    return `${currency} ${value.toFixed(maximumFractionDigits)}`;
+  }
+}

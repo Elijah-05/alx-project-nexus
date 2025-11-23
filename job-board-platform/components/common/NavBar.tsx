@@ -52,16 +52,16 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-lg p-4 flex flex-col gap-2">
-          <NavLink mobile href="#">
+          <NavLink mobile href="/jobs">
             Find Jobs
           </NavLink>
-          <NavLink mobile href="#">
+          <NavLink mobile href="/#partners">
             Companies
           </NavLink>
-          <NavLink mobile href="#">
+          <NavLink mobile href="/">
             Home
           </NavLink>
-          <NavLink mobile href="#">
+          <NavLink mobile href="/">
             About
           </NavLink>
           <div className="grid grid-cols-2 gap-3 mt-4">

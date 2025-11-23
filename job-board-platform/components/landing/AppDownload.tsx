@@ -32,7 +32,7 @@ export default function AppDownload() {
           {/* DOWNLOAD BUTTONS */}
           <div className="flex flex-col lg:flex-row items-center gap-4">
             {/* APP STORE */}
-            <button className="flex justify-center items-center gap-3 bg-gray-700 text-white px-5 py-3 rounded-xl max-lg:w-full max-lg:max-w-lg lg:px-8 hover:bg-gray-900 transition">
+            <button className="flex justify-center items-center gap-3 bg-gray-700 text-white px-5 py-3 rounded-xl lg: w-full max-lg:max-w-sm lg:px-8 hover:bg-gray-900 transition">
               <Image
                 src="/assets/icon/app-store.png"
                 alt="Apple"
@@ -46,7 +46,7 @@ export default function AppDownload() {
             </button>
 
             {/* GOOGLE PLAY */}
-            <button className="flex justify-center items-center gap-3 bg-gray-700 text-white px-5 py-3 rounded-xl max-lg:w-full max-lg:max-w-lg lg:px-8 hover:bg-gray-900 transition">
+            <button className="flex justify-center items-center gap-3 bg-gray-700 text-white px-5 py-3 rounded-xl lg: w-full max-lg:max-w-sm lg:px-8 hover:bg-gray-900 transition">
               <Image
                 src="/assets/icon/play-store.png"
                 alt="Google Play"

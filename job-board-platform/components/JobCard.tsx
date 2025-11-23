@@ -1,4 +1,4 @@
-import { lighten, randomHexColor, timeAgo } from "@/utils";
+import { formatMoney, lighten, randomHexColor, timeAgo } from "@/utils";
 import { CircleDollarSign, Clock3, MapPin } from "lucide-react";
 import Button from "./common/Button";
 
@@ -51,7 +51,7 @@ export default function JobCard({ job }: { job: JobCardProps }) {
           </div>
           <div className="flex gap-2">
             <CircleDollarSign size={14} />
-            {job.salary.min} - {job.salary.max}
+            {formatMoney(job.salary.min)} - {formatMoney(job.salary.max)}
           </div>
           <span className="xs:hidden text-xs font-medium text-gray-400 flex items-center gap-1">
             <Clock3 size={16} className="inline-block" />{" "}

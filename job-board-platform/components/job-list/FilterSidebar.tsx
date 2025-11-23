@@ -20,7 +20,7 @@ export default function FilterSidebar({
     },
     {
       title: "Experience",
-      items: ["Entry Level", "Mid Level", "Senior Level"],
+      items: ["Junior", "Mid Level", "Senior Level", "Lead"],
     },
     {
       title: "Location",
@@ -49,13 +49,13 @@ export default function FilterSidebar({
                     item
                   )
                 }
-                className={`text-left pl-4 pr-3 py-1 rounded-md hover:bg-blue-100 ${
+                className={`text-left pl-4 pr-3 py-1 rounded-md ${
                   (section.title === "Job Type" && filters.jobType === item) ||
                   (section.title === "Experience" &&
                     filters.experience === item) ||
                   (section.title === "Location" && filters.location === item)
                     ? "bg-primary/20 font-medium"
-                    : ""
+                    : "hover:bg-blue-100"
                 }`}
               >
                 {item}

@@ -1,3 +1,5 @@
+type ExperienceLevel = 'Junior' | 'Mid Level' | 'Senior Level' | 'Lead';
+
 interface JobCardProps {
   _id?: string;
   title: string;
@@ -6,9 +8,10 @@ interface JobCardProps {
   description: string;
   salary: { min: number | string; max: number | string };
   jobType: string;
+  experienceLevel?: ExperienceLevel[]
   isFeatured: boolean;
   postedAt: string;
-  remote: boolean;
+  workType: boolean;
   tags: string[];
 }
 

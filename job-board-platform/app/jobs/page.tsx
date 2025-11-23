@@ -58,6 +58,7 @@ export default function JobsPage() {
       params.set("limit", String(limit));
       if (filters.q) params.set("q", filters.q);
       if (filters.jobType) params.set("jobType", filters.jobType);
+      if (filters.experience) params.set("experience", filters.experience);
       if (filters.location) params.set("location", filters.location);
 
       // sync URL so the current filters/page are shareable
@@ -84,7 +85,16 @@ export default function JobsPage() {
   }, [fetchJobs]);
 
   function handleFilterChange(key: keyof typeof filters, value: string) {
-    setFilters((prev) => ({ ...prev, [key]: value }));
+    setFilters((prev) => {
+      // if same value selected again (or empty string), remove the key
+      if (prev[key] === value || value === "") {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { [key]: _removed, ...rest } = prev;
+        return rest;
+      }
+      // otherwise set/update the value
+      return { ...prev, [key]: value };
+    });
     setPage(1);
   }
 
@@ -185,23 +195,7 @@ export default function JobsPage() {
               <div className="pb-14">
                 <div className="grid grid-cols-1 gap-4 px-1">
                   {jobs.map((job) => {
-                    const mapped = {
-                      title: job.title,
-                      company: job.company,
-                      location: job.location ?? "Remote",
-                      description: job.description ?? "",
-                      salary: {
-                        min: job.salary?.min ?? 0,
-                        max: job.salary?.max ?? 0,
-                      },
-                      jobType: job.jobType ?? "Full-time",
-                      isFeatured: !!job.isFeatured,
-                      postedAt: job.postedAt ?? new Date().toISOString(),
-                      remote: !!job.remote,
-                      tags: job.tags ?? [],
-                    };
-
-                    return <JobCard key={job._id ?? job.title} job={mapped} />;
+                    return <JobCard key={job._id ?? job.title} job={job} />;
                   })}
                 </div>
 

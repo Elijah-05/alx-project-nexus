@@ -19,7 +19,6 @@ export async function GET(request: Request) {
   const limit = Math.min(12, Math.max(1, requestedLimit));
   const jobType = searchParams.get("jobType");
   const location = searchParams.get("location");
-  const remote = searchParams.get("remote");
   const minSalary = searchParams.get("minSalary");
   const maxSalary = searchParams.get("maxSalary");
 
@@ -36,8 +35,7 @@ export async function GET(request: Request) {
         { description: { $regex: q, $options: "i" } },
       ];
     if (jobType) baseFilter.jobType = jobType;
-    if (location) baseFilter.location = { $regex: location, $options: "i" };
-    if (remote === "true") baseFilter.remote = true;
+    if (location) baseFilter.workType = location;
     if (minSalary || maxSalary) {
       baseFilter["salary.min"] = {};
       if (minSalary) baseFilter["salary.min"].$gte = Number(minSalary);

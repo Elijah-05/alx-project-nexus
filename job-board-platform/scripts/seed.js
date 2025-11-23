@@ -11,8 +11,6 @@ dotenv.config({ path: ".env" });
 
 const uri = process.env.MONGODB_URI;
 
-console.log("uri:", uri);
-
 if (!uri) {
   console.error(
     "MONGODB_URI environment variable is required. See .env.example"
@@ -59,6 +57,7 @@ const companies = [
 
 const locations = [
   "Remote",
+  "Hybrid",
   "San Francisco, CA",
   "New York, NY",
   "London, UK",
@@ -71,6 +70,20 @@ const locations = [
 ];
 
 const jobTypes = ["Full-time", "Part-time", "Contract", "Internship"];
+const workTypes = ["On-site", "Remote", "Hybrid"];
+
+const experienceLevels = ["Junior", "Mid Level", "Senior Level", "Lead"];
+
+function randomExperienceLevels(arr) {
+  // choose how many experience levels the job should have (1–4)
+  const count = Math.floor(Math.random() * arr.length - 2) + 1;
+
+  // shuffle array
+  const shuffled = [...arr].sort(() => 0.5 - Math.random());
+
+  // return first N items
+  return shuffled.slice(0, count);
+}
 
 function rand(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -95,6 +108,8 @@ for (let i = 0; i < 50; i++) {
   const company = rand(companies);
   const location = rand(locations);
   const jobType = rand(jobTypes);
+  const workType = rand(workTypes);
+  const experienceLevel = randomExperienceLevels(experienceLevels);
   const minSalary = 30000 + Math.floor(Math.random() * 120000);
   const maxSalary = minSalary + 10000 + Math.floor(Math.random() * 60000);
   const isFeatured = i % 7 === 0 || (i < 6 && Math.random() > 0.2); // some featured spread
@@ -109,6 +124,8 @@ for (let i = 0; i < 50; i++) {
     description: `${title} at ${company} - ${lorem(30)}`,
     salary: { min: minSalary, max: maxSalary },
     jobType,
+    workType,
+    experienceLevel: experienceLevel,
     isFeatured,
     postedAt,
     remote: location === "Remote",
