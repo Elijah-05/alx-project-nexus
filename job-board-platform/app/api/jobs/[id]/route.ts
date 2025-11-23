@@ -2,15 +2,15 @@ import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
 import { ObjectId } from "mongodb";
 
-export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
-  const { id } = await params;
-
-  if (!id) return NextResponse.json({ error: "Missing id" }, { status: 400 });
-
+export async function GET(request: Request) {
+  // extract id from the request URL path to avoid strict handler signature issues
   try {
+    const url = new URL(request.url);
+    const parts = url.pathname.split("/").filter(Boolean);
+    const id = parts[parts.length - 1];
+
+    if (!id) return NextResponse.json({ error: "Missing id" }, { status: 400 });
+
     const { db } = await connectToDatabase();
     let _id: ObjectId;
     try {

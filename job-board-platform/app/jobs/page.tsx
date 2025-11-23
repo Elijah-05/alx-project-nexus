@@ -14,7 +14,7 @@ export default function JobsPage() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const [jobs, setJobs] = useState<JobCardProps[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const [limit] = useState(6);
@@ -175,14 +175,6 @@ export default function JobsPage() {
               </button>
             </div>
 
-            {
-              !loading && !error && jobs.length === 0 && (
-                <div className="text-center text-gray-500 mt-20">
-                  No jobs found matching your criteria.
-                </div>
-              )
-            }
-
             {loading ? (
               <div className="space-y-4">
                 <JobCardSkeleton />
@@ -216,6 +208,11 @@ export default function JobsPage() {
                     />
                   </div>
                 )}
+              </div>
+            )}
+            {!loading && !error && jobs.length === 0 && (
+              <div className="text-center text-gray-500 mt-20">
+                No jobs found matching your criteria.
               </div>
             )}
           </div>

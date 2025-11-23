@@ -7,7 +7,7 @@
   scroll-behavior: smooth;
 }
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -15,7 +15,7 @@
 
   --color-primary: #1491ea;
 
-  --breakpoint-xs: '350px';
+  --breakpoint-xs: 21.875rem;
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
 
