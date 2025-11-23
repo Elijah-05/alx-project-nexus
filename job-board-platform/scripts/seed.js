@@ -56,8 +56,8 @@ const companies = [
 ];
 
 const locations = [
-  "Remote",
-  "Hybrid",
+  "Addis Ababa, Ethiopia",
+  "Nairobi, Kenya",
   "San Francisco, CA",
   "New York, NY",
   "London, UK",

@@ -1,6 +1,7 @@
 import { formatMoney, lighten, randomHexColor, timeAgo } from "@/utils";
 import { CircleDollarSign, Clock3, MapPin } from "lucide-react";
 import Button from "./common/Button";
+import Link from "next/link";
 
 export default function JobCard({ job }: { job: JobCardProps }) {
   const base = randomHexColor();
@@ -8,7 +9,8 @@ export default function JobCard({ job }: { job: JobCardProps }) {
   const text = base;
 
   return (
-    <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow group">
+    <Link href={`/jobs/${job._id}`} className="block group">
+          <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow group">
       <div className="flex justify-between items-start mb-4">
         <div className="flex gap-3">
           <div
@@ -66,5 +68,6 @@ export default function JobCard({ job }: { job: JobCardProps }) {
         </Button>
       </div>
     </div>
+    </Link>
   );
 }

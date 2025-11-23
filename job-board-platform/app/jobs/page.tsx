@@ -200,7 +200,7 @@ export default function JobsPage() {
                 </div>
 
                 {jobs.length > 0 && (
-                  <div className="flex items-center justify-between mt-12">
+                  <div className="flex flex-col sm:flex-row gap-4 items-center justify-between mt-12">
                     <div className="text-gray-400">
                       Showing {(page - 1) * limit + 1} -{" "}
                       {Math.min(page * limit, total)} of {total}
