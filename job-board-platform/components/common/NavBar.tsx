@@ -24,14 +24,14 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center">
-          <Logo hideLabelOnMobile />
+          <Logo />
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8">
-            <NavLink href="#">Find Jobs</NavLink>
-            <NavLink href="#">Companies</NavLink>
-            <NavLink href="#">Salaries</NavLink>
-            <NavLink href="#">For Employers</NavLink>
+            <NavLink href="/jobs">Find Jobs</NavLink>
+            <NavLink href="/#partners">Companies</NavLink>
+            <NavLink href="/">Home</NavLink>
+            <NavLink href="/">About</NavLink>
           </div>
 
           <div className="hidden md:flex items-center gap-4">
@@ -59,10 +59,10 @@ export default function Navbar() {
             Companies
           </NavLink>
           <NavLink mobile href="#">
-            Salaries
+            Home
           </NavLink>
           <NavLink mobile href="#">
-            For Employers
+            About
           </NavLink>
           <div className="grid grid-cols-2 gap-3 mt-4">
             <Button variant="primary" fullWidth>

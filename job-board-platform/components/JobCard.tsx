@@ -12,7 +12,7 @@ export default function JobCard({ job }: { job: JobCardProps }) {
       <div className="flex justify-between items-start mb-4">
         <div className="flex gap-3">
           <div
-            className={`w-12 h-12 rounded-full font-bold text-xl flex items-center justify-center `}
+            className={`size-12 shrink-0 rounded-full font-bold text-xl flex items-center justify-center `}
             style={{
               backgroundColor: bg,
               color: text,
@@ -27,7 +27,7 @@ export default function JobCard({ job }: { job: JobCardProps }) {
             <p className="text-sm text-gray-500 mb-4">{job.company}</p>
           </div>
         </div>
-        <span className="text-xs font-medium text-gray-400 flex items-center gap-1">
+        <span className="max-xs:hidden text-xs font-medium text-gray-400 flex items-center gap-1">
           <Clock3 size={16} className="inline-block" /> {timeAgo(job.postedAt)}
         </span>
       </div>
@@ -43,8 +43,8 @@ export default function JobCard({ job }: { job: JobCardProps }) {
         ))}
       </div>
 
-      <div className="flex items-center justify-between border-gray-50">
-        <div className="flex items-center gap-3 text-sm text-gray-500">
+      <div className="flex flex-col xs:flex-row xs:items-center justify-between border-gray-50">
+        <div className="flex items-center flex-wrap gap-3 text-sm text-gray-500">
           <div className="flex gap-2">
             <MapPin size={14} />
             {job.location}
@@ -53,8 +53,15 @@ export default function JobCard({ job }: { job: JobCardProps }) {
             <CircleDollarSign size={14} />
             {job.salary.min} - {job.salary.max}
           </div>
+          <span className="xs:hidden text-xs font-medium text-gray-400 flex items-center gap-1">
+            <Clock3 size={16} className="inline-block" />{" "}
+            {timeAgo(job.postedAt)}
+          </span>
         </div>
-        <Button variant="primary" className="md:group-hover:scale-105">
+        <Button
+          variant="primary"
+          className="max-xs:mt-4 md:group-hover:scale-105"
+        >
           Apply
         </Button>
       </div>

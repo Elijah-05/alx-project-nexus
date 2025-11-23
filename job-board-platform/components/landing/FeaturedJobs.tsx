@@ -84,10 +84,10 @@ export default function FeaturedJobs() {
           </div>
         )}
 
-        <div className="mt-10 text-center sm:hidden">
+        <div className="mt-10 text-center">
           <Button
             variant="outline"
-            className="text-gray-600 font-normal border py-3"
+            className="text-gray-600 font-normal border py-3 border-slate-100"
             fullWidth
             onClick={() => goToJobsListPage()}
           >

@@ -1,4 +1,18 @@
-export default function FilterSidebar() {
+type Filters = {
+  jobType?: string;
+  experience?: string;
+  location?: string;
+};
+
+export default function FilterSidebar({
+  filters = {},
+  onChange,
+  onReset,
+}: {
+  filters?: Filters;
+  onChange?: (key: keyof Filters, value: string) => void;
+  onReset?: () => void;
+}) {
   const sections = [
     {
       title: "Job Type",
@@ -15,7 +29,7 @@ export default function FilterSidebar() {
   ];
 
   return (
-    <div className="bg-white p-4 rounded-xl shadow-sm border">
+    <div className="p-4 pl-2">
       <h2 className="font-semibold text-xl mb-4">Filters</h2>
 
       {sections.map((section) => (
@@ -25,7 +39,24 @@ export default function FilterSidebar() {
             {section.items.map((item) => (
               <button
                 key={item}
-                className="text-left px-2 py-1 rounded-md hover:bg-blue-100"
+                onClick={() =>
+                  onChange?.(
+                    section.title === "Job Type"
+                      ? "jobType"
+                      : section.title === "Experience"
+                      ? "experience"
+                      : "location",
+                    item
+                  )
+                }
+                className={`text-left pl-4 pr-3 py-1 rounded-md hover:bg-blue-100 ${
+                  (section.title === "Job Type" && filters.jobType === item) ||
+                  (section.title === "Experience" &&
+                    filters.experience === item) ||
+                  (section.title === "Location" && filters.location === item)
+                    ? "bg-primary/20 font-medium"
+                    : ""
+                }`}
               >
                 {item}
               </button>
@@ -34,7 +65,10 @@ export default function FilterSidebar() {
         </div>
       ))}
 
-      <button className="w-full border py-2 rounded-lg mt-4 hover:bg-gray-100">
+      <button
+        onClick={() => onReset?.()}
+        className="w-full border border-gray-200 py-2 rounded-lg hover:bg-slate-100"
+      >
         Reset Filters
       </button>
     </div>

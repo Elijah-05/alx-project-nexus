@@ -1,5 +1,3 @@
-import Footer from "@/components/common/Footer";
-import Navbar from "@/components/common/NavBar";
 import AppDownload from "@/components/landing/AppDownload";
 import CategorySection from "@/components/landing/CategorySection";
 import CTA from "@/components/landing/CTA";
@@ -20,7 +18,6 @@ export default function Home() {
         <CTA />
         <AppDownload />
       </main>
-      <Footer />
     </div>
   );
 }

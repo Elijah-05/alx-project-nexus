@@ -11,7 +11,7 @@ export default function Footer() {
             <Logo/>
             <p className="mt-6 text-gray-400 max-w-xs leading-relaxed">
               The #1 platform for modern professionals. We connect top talent
-              with the world's best companies.
+              with the world&apos;s best companies.
             </p>
             <div className="flex gap-4 mt-6">
               {[FaFacebookF, FaTwitter, FaLinkedin, FaInstagram].map((Icon, i) => (

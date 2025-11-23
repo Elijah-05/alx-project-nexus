@@ -11,11 +11,11 @@ export default function CTA() {
             Join thousands of professionals and top companies building the
             future. Create your profile in minutes.
           </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button variant="white" className="w-full sm:w-auto py-3.5">
+        <div className="flex flex-row items-center justify-center gap-4">
+          <Button variant="white" className="w-full sm:w-auto max-sm:w-fit py-3.5">
             Register today
           </Button>
-          <Button variant="ghost" className="py-3.5 text-white border border-white hover:bg-transparent hover:text-white hover:border-white/80 w-full sm:w-auto">
+          <Button variant="ghost" className="py-3.5 text-white border border-white hover:bg-transparent hover:text-white hover:border-white/80 w-full max-sm:w-fit sm:w-auto">
             Post a Job
           </Button>
         </div>

@@ -11,3 +11,13 @@ interface JobCardProps {
   remote: boolean;
   tags: string[];
 }
+
+type PaginationProps= {
+  jobs?: JobCardProps[];
+  total: number;
+  page: number;
+  limit: number;
+  onClickPage: (page: number) => void;
+  onPrev: () => void;
+  onNext: () => void;
+};

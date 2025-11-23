@@ -1,6 +1,18 @@
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function MobileFilterDrawer({ open, onClose }: {open: boolean, onClose: () => void}) {
+export default function MobileFilterDrawer({
+  open,
+  onClose,
+  filters = {},
+  onChange,
+  onReset,
+}: {
+  open: boolean;
+  onClose: () => void;
+  filters?: { jobType?: string; experience?: string; location?: string };
+  onChange?: (k: "jobType" | "experience" | "location", v: string) => void;
+  onReset?: () => void;
+}) {
   const sections = [
     {
       title: "Job Type",
@@ -38,7 +50,9 @@ export default function MobileFilterDrawer({ open, onClose }: {open: boolean, on
           >
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-semibold">Filters</h2>
-              <button onClick={onClose} className="text-2xl">&times;</button>
+              <button onClick={onClose} className="text-2xl">
+                &times;
+              </button>
             </div>
 
             {sections.map((section) => (
@@ -48,7 +62,26 @@ export default function MobileFilterDrawer({ open, onClose }: {open: boolean, on
                   {section.items.map((item) => (
                     <button
                       key={item}
-                      className="w-fit px-3 py-1 rounded-md hover:bg-blue-200 bg-blue-100"
+                      onClick={() =>
+                        onChange?.(
+                          section.title === "Job Type"
+                            ? "jobType"
+                            : section.title === "Experience"
+                            ? "experience"
+                            : "location",
+                          item
+                        )
+                      }
+                      className={`w-fit px-3 py-1 rounded-md hover:bg-blue-200 ${
+                        (section.title === "Job Type" &&
+                          filters.jobType === item) ||
+                        (section.title === "Experience" &&
+                          filters.experience === item) ||
+                        (section.title === "Location" &&
+                          filters.location === item)
+                          ? "bg-blue-100"
+                          : ""
+                      }`}
                     >
                       {item}
                     </button>
@@ -57,7 +90,13 @@ export default function MobileFilterDrawer({ open, onClose }: {open: boolean, on
               </div>
             ))}
 
-            <button className="w-full border py-3 rounded-lg mt-4">
+            <button
+              onClick={() => {
+                onReset?.();
+                onClose();
+              }}
+              className="w-full border py-3 rounded-lg mt-4"
+            >
               Reset Filters
             </button>
           </motion.div>

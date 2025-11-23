@@ -4,6 +4,7 @@
   --background: #eff6ff;
   --foreground: #171717;
   --mainBg: #eff6ff;
+  scroll-behavior: smooth;
 }
 
 @theme inline {
@@ -14,6 +15,7 @@
 
   --color-primary: #1491ea;
 
+  --breakpoint-xs: '350px';
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
 
