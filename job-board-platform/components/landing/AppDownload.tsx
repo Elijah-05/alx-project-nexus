@@ -50,8 +50,8 @@ export default function AppDownload() {
               <Image
                 src="/assets/icon/play-store.png"
                 alt="Google Play"
-                width={26}
-                height={26}
+                width={24}
+                height={24}
               />
               <div className="leading-3 text-left">
                 <p className="font-semibold">Available</p>
