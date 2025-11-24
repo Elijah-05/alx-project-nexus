@@ -1,4 +1,6 @@
 type ExperienceLevel = 'Junior' | 'Mid Level' | 'Senior Level' | 'Lead';
+type JobType = "Full-time" | "Part-time" | "Contract" | "Internship";
+type WorkType = "On-site" | "Remote" | "Hybrid";
 
 interface JobCardProps {
   _id?: string;
@@ -11,8 +13,9 @@ interface JobCardProps {
   experienceLevel?: ExperienceLevel[]
   isFeatured: boolean;
   postedAt: string;
-  workType: boolean;
+  workType: WorkType;
   tags: string[];
+  createdBy?: string;
 }
 
 type PaginationProps= {
@@ -24,3 +27,4 @@ type PaginationProps= {
   onPrev: () => void;
   onNext: () => void;
 };
+

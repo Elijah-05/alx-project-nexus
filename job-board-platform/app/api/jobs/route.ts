@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
+import { getUserFromRequest } from "@/lib/auth";
 
 // GET /api/jobs
 // Supports query parameters:
@@ -81,6 +82,58 @@ export async function GET(request: Request) {
     ]);
 
     return NextResponse.json({ jobs, total, page, limit });
+  } catch (err: any) {
+    return NextResponse.json(
+      { error: err?.message ?? "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function POST(request: Request) {
+  try {
+    const user = await getUserFromRequest(request);
+    if (!user)
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+    const body = await request.json();
+    const {
+      title,
+      company,
+      description,
+      location,
+      jobType,
+      workType,
+      experienceLevel,
+      salary,
+      tags,
+      isFeatured,
+    } = body;
+    if (!title || !company)
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      );
+
+    const { db } = await connectToDatabase();
+    const doc = {
+      title,
+      company,
+      description: description || "",
+      location: location || "",
+      jobType: jobType || "Full-time",
+      workType: workType || "On-site",
+      experienceLevel: Array.isArray(experienceLevel) ? experienceLevel : [],
+      salary: salary || { min: 0, max: 0 },
+      tags: Array.isArray(tags) ? tags : [],
+      isFeatured: !!isFeatured,
+      createdBy: user._id,
+      postedAt: new Date().toISOString(),
+    } as any;
+
+    const result = await db.collection("jobs").insertOne(doc);
+    const job = await db.collection("jobs").findOne({ _id: result.insertedId });
+    return NextResponse.json({ ok: true, job });
   } catch (err: any) {
     return NextResponse.json(
       { error: err?.message ?? "Internal Server Error" },

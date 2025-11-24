@@ -3,6 +3,7 @@
 import Button from "@/components/common/Button";
 import { JobClarificationPlaceholder } from "@/components/job-detail/JobClarificationPlaceholder";
 import { JobDetailShimmer } from "@/components/job-detail/JobDetailShimmer";
+import { useAuth } from "@/context/AuthProvider";
 import { formatMoney, timeAgo } from "@/utils";
 import { Briefcase, ChevronLeft, DollarSign, MapPin } from "lucide-react";
 import Link from "next/link";
@@ -15,6 +16,11 @@ export default function Page() {
   const [job, setJob] = useState<JobCardProps | null>(null);
   const params = useParams();
   const id = params.id;
+  const { user } = useAuth();
+
+  console.log("User in Job Detail Page:", user, job);
+
+  const canEditJob = user && job && user._id === job.createdBy;
 
   const fetchJobs = useCallback(async () => {
     setLoading(true);
@@ -90,7 +96,7 @@ export default function Page() {
           <span className="font-medium">Back to Jobs</span>
         </Link>
 
-        <div className="mt-4 flex flex-col lg:flex-row lg:gap-8">
+        <div className="mt-4 flex flex-col lg:flex-row lg:gap-4">
           {/* Left Content - Job Description */}
           <div className="lg:col-span-2 space-y-8">
             {/* Header Card */}
@@ -118,9 +124,7 @@ export default function Page() {
                   <h3 className="text-lg font-bold text-gray-900 mb-3">
                     Job Overview:
                   </h3>
-                  <p>
-                    {job.description}
-                  </p>
+                  <p>{job.description}</p>
                 </div>
                 <JobClarificationPlaceholder />
               </div>
@@ -128,14 +132,26 @@ export default function Page() {
           </div>
 
           {/* Right Sidebar */}
-          <div className="lg:col-span-1 space-y-6">
+          <div className="lg:col-span-1 space-y-6 max-w-sm">
             {/* Apply Card */}
             <div className="bg-white flex flex-col-reverse lg:flex-col rounded-2xl p-6 border max-lg:border-t-0 max-lg:rounded-t-none border-gray-100 shadow-sm sticky lg:top-28">
-              <Button variant="primary" fullWidth className="max-lg:mt-8 lg:mb-8 py-3 text-lg">
+              <Button
+                variant="primary"
+                fullWidth
+                className="max-lg:mt-8 py-3 text-lg"
+              >
                 Apply Now
               </Button>
+             {canEditJob && <Button
+                variant="ghost"
+                fullWidth
+                className="mt-3 py-3 text-lg border border-primary"
+                navigateTo={`/jobs/${job._id}/edit`}
+              >
+                Edit
+              </Button>}
 
-              <div className="space-y-6">
+              <div className="lg:mt-8 space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="p-2 bg-gray-100 rounded-lg text-gray-600">
                     <Briefcase size={20} />
@@ -152,7 +168,12 @@ export default function Page() {
                   </div>
                   <div>
                     <p className="text-sm font-bold text-gray-900">Location</p>
-                    <p className="text-sm text-gray-500"><span className="font-medium text-gray-800">{job.workType}</span>, {job.location}</p>
+                    <p className="text-sm text-gray-500">
+                      <span className="font-medium text-gray-800">
+                        {job.workType}
+                      </span>
+                      , {job.location}
+                    </p>
                   </div>
                 </div>
 
@@ -162,7 +183,10 @@ export default function Page() {
                   </div>
                   <div>
                     <p className="text-sm font-bold text-gray-900">Salary</p>
-                    <p className="text-sm text-gray-500">{formatMoney(job.salary.min)} - {formatMoney(job.salary.max)}</p>
+                    <p className="text-sm text-gray-500">
+                      {formatMoney(job.salary.min)} -{" "}
+                      {formatMoney(job.salary.max)}
+                    </p>
                   </div>
                 </div>
               </div>
