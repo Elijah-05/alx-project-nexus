@@ -7,10 +7,10 @@ export default function StatsSection() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x-0 md:divide-x divide-gray-100">
           {STATS.map((stat) => (
             <div key={stat.id} className="text-center">
-              <p className="text-3xl md:text-4xl font-bold text-gray-900 mb-1">
+              <p className="text-2xl lg:text-3xl md:text-4xl font-bold text-gray-900 mb-1">
                 {stat.value}
               </p>
-              <p className="text-sm text-gray-500 font-medium uppercase tracking-wide">
+              <p className="text-xs md:text-sm text-gray-500 font-medium uppercase tracking-wide">
                 {stat.label}
               </p>
             </div>

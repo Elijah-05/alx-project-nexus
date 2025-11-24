@@ -16,33 +16,17 @@
   --color-primary: #1491ea;
 
   --breakpoint-xs: 21.875rem;
-  --animate-marquee: marquee var(--duration) infinite linear;
-  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  --animate-marquee: marquee 40s infinite linear;
 
   @keyframes marquee {
     from {
       transform: translateX(0);
     }
     to {
-      transform: translateX(calc(-100% - var(--gap)));
-    }
-  }
-  @keyframes marquee-vertical {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(calc(-100% - var(--gap)));
+      transform: translateX(calc(-100% - 20px));
     }
   }
 }
-/* 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
 
 body {
   background: var(--background);

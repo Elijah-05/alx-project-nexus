@@ -5,15 +5,16 @@ import { FaFacebookF, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa"
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white pt-20 pb-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:pl-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+          {/* Company Logo & short desc */}
           <div className="lg:col-span-2">
             <Logo/>
-            <p className="mt-6 text-gray-400 max-w-xs leading-relaxed">
+            <p className="mt-2 text-gray-400 max-w-xs">
               The #1 platform for modern professionals. We connect top talent
               with the world&apos;s best companies.
             </p>
-            <div className="flex gap-4 mt-6">
+            <div className="flex gap-2 mt-6">
               {[FaFacebookF, FaTwitter, FaLinkedin, FaInstagram].map((Icon, i) => (
                 <a
                   key={i}
@@ -26,10 +27,11 @@ export default function Footer() {
             </div>
           </div>
 
-          {Object.entries(FOOTER_LINKS).map(([title, links]) => (
+              {/* Other Links */}
+            {Object.entries(FOOTER_LINKS).map(([title, links]) => (
             <div key={title}>
-              <h4 className="text-lg font-bold mb-6">{title}</h4>
-              <ul className="space-y-4">
+              <h4 className="text-lg font-bold mb-2">{title}</h4>
+              <ul className="space-y-1">
                 {links.map((link) => (
                   <li key={link}>
                     <a

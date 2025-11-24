@@ -10,11 +10,11 @@ export default function JobCard({ job }: { job: JobCardProps }) {
 
   return (
     <Link href={`/jobs/${job._id}`} className="block group">
-      <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow group">
-        <div className="flex justify-between items-start mb-4">
-          <div className="flex gap-3">
+      <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md group">
+        <div className="flex justify-between items-start mb-4 gap-2">
+          <div className="flex items-center gap-3">
             <div
-              className={`size-12 shrink-0 rounded-full font-bold text-xl flex items-center justify-center `}
+              className={`size-10 lg:size-12 shrink-0 rounded-full font-bold text-xl flex items-center justify-center `}
               style={{
                 backgroundColor: bg,
                 color: text,
@@ -22,14 +22,14 @@ export default function JobCard({ job }: { job: JobCardProps }) {
             >
               {job.company.charAt(0)}
             </div>
-            <div>
-              <h3 className="font-bold text-lg text-gray-900 group-hover:text-primary transition-colors">
+            <div className="space-y-1">
+              <h3 className="font-bold leading-none text-lg text-gray-900 group-hover:text-primary transition-colors">
                 {job.title}
               </h3>
-              <p className="text-sm text-gray-500 mb-4">{job.company}</p>
+              <p className="text-xs md:text-sm text-gray-500">{job.company}</p>
             </div>
           </div>
-          <span className="max-xs:hidden text-xs font-medium text-gray-400 flex items-center gap-1">
+          <span className="max-xs:hidden shrink-0 text-xs font-medium text-gray-400 flex items-center gap-1">
             <Clock3 size={16} className="inline-block" />{" "}
             {timeAgo(job.postedAt)}
           </span>
@@ -61,7 +61,7 @@ export default function JobCard({ job }: { job: JobCardProps }) {
               {timeAgo(job.postedAt)}
             </span>
           </div>
-          <Button variant="primary" className="max-xs:mt-4">
+          <Button variant="primary" className="max-xs:mt-4 max-sm:text-sm">
             Apply
           </Button>
         </div>

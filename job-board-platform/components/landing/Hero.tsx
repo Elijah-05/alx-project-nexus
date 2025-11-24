@@ -8,7 +8,7 @@ export default function Hero() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center items-center h-full">
         <div className="flex flex-col lg:flex-row items-center justify-center gap-12">
           <div className="flex-1 flex flex-col items-center text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl max-w-2xl lg:max-w-3xl font-extrabold text-white tracking-tight leading-tight mb-2">
+            <h1 className="text-4xl xl:text-5xl 3xl:text-6xl max-w-2xl lg:max-w-3xl font-extrabold text-white tracking-tight leading-tight mb-2">
               The complete platform to <br className="hidden lg:block" />
               <span className="">find your next role.</span>
             </h1>

@@ -9,9 +9,9 @@ export default function Logo({
   return (
     <Link
       href={"/"}
-      className="flex items-center gap-2 font-bold text-2xl text-primary"
+      className="flex items-center gap-2 font-bold text-xl lg:text-2xl text-primary"
     >
-      <Briefcase className="w-8 h-8" strokeWidth={2.5} />
+      <Briefcase className="size-6 lg:size-8" strokeWidth={2.5} />
       <span className={hideLabelOnMobile ? "hidden lg:block" : "block"}>
         JobStream
       </span>
