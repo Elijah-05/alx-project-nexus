@@ -5,16 +5,27 @@ import Logo from "./Logo";
 import NavLink from "./NavLink";
 import Button from "./Button";
 import { Menu, X } from "lucide-react";
+import { useAuth } from "@/context/AuthProvider";
+import { useParams } from "next/navigation";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { user, logout } = useAuth();
+  const params = useParams();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if(isOpen) {
+      setIsOpen(false);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params]);
 
   return (
     <nav
@@ -35,8 +46,37 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="primary">Register</Button>
-            <Button variant="ghost" className="border border-primary">Log In</Button>
+            {user ? (
+              <>
+                {/* <NavLink href="/jobs/new" className="text-sm font-medium">Create Job</NavLink> */}
+                 <Button variant="primary" navigateTo="/jobs/new">
+                  Create Job
+                </Button>
+                {/* <h6 className="text-sm">{user.name}</h6> */}
+                <Button
+                  variant="ghost"
+                  className="border border-primary py-2 font-medium"
+                  onClick={async () => {
+                    await logout();
+                  }}
+                >
+                  Log Out
+                </Button>
+              </>
+            ) : (
+              <div className="hidden md:flex items-center gap-4">
+                <Button variant="primary" navigateTo="/auth/register">
+                  Register
+                </Button>
+                <Button
+                  variant="ghost"
+                  className="border border-primary"
+                  navigateTo="/auth/login"
+                >
+                  Log In
+                </Button>
+              </div>
+            )}
           </div>
 
           {/* Mobile Toggle */}
@@ -65,12 +105,30 @@ export default function Navbar() {
             About
           </NavLink>
           <div className="grid grid-cols-2 gap-3 mt-4">
-            <Button variant="primary" fullWidth>
-              Register
-            </Button>
-            <Button variant="outline" fullWidth>
-              Login
-            </Button>
+            {user ? (
+              <>
+                <Button variant="primary" fullWidth navigateTo="/jobs/new">
+                  Create Job
+                </Button>
+                <Button
+                  variant="outline"
+                  fullWidth
+                  onClick={async () => await logout()}
+                  className="border border-primary"
+                >
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <div className="grid grid-cols-2 gap-3 mt-4">
+                <Button variant="primary" fullWidth navigateTo="/auth/register">
+                  Register
+                </Button>
+                <Button variant="outline" className="border border-primary" fullWidth navigateTo="/auth/login">
+                  Login
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       )}
