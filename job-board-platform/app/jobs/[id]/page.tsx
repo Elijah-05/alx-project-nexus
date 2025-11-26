@@ -90,7 +90,7 @@ export default function Page() {
           href="/jobs"
           className="inline-flex items-center gap-4 text-gray-700 hover:text-gray-900"
         >
-          <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
+          <div className="size-10 lg:size-12 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
             <ChevronLeft size={20} />
           </div>
           <span className="font-medium">Back to Jobs</span>
@@ -100,13 +100,13 @@ export default function Page() {
           {/* Left Content - Job Description */}
           <div className="lg:col-span-2 space-y-8">
             {/* Header Card */}
-            <div className="bg-white rounded-2xl max-lg:rounded-b-none p-8 border max-lg:border-b-0 border-gray-100 shadow-sm">
-              <div className="flex flex-col sm:flex-row sm:items-start gap-5">
-                <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 shrink-0">
+            <div className="bg-white rounded-2xl max-lg:rounded-b-none p-5 lg:p-8 border max-lg:border-b-0 border-gray-100 shadow-sm">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-2 lg:gap-5">
+                <div className="max-sm:hidden size-12 md:size-14 xl:size-16  rounded-full bg-gray-100 flex items-center justify-center text-gray-500 shrink-0">
                   <span className="text-2xl font-bold">C</span>
                 </div>
                 <div>
-                  <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                  <h1 className="text-xl xs:text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
                     {job.title}
                   </h1>
                   <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500 font-medium">
@@ -132,24 +132,28 @@ export default function Page() {
           </div>
 
           {/* Right Sidebar */}
-          <div className="lg:col-span-1 space-y-6 max-w-sm">
+          <div className="lg:col-span-1 space-y-6 lg:max-w-sm">
             {/* Apply Card */}
             <div className="bg-white flex flex-col-reverse lg:flex-col rounded-2xl p-6 border max-lg:border-t-0 max-lg:rounded-t-none border-gray-100 shadow-sm sticky lg:top-28">
-              <Button
-                variant="primary"
-                fullWidth
-                className="max-lg:mt-8 py-3 text-lg"
-              >
-                Apply Now
-              </Button>
-             {canEditJob && <Button
-                variant="ghost"
-                fullWidth
-                className="mt-3 py-3 text-lg border border-primary"
-                navigateTo={`/jobs/${job._id}/edit`}
-              >
-                Edit
-              </Button>}
+              {canEditJob ? (
+                <Button
+                  variant="ghost"
+                  fullWidth
+                  className="max-lg:mt-6 py-3 text-lg border border-primary sm:max-w-xs"
+                  navigateTo={`/jobs/${job._id}/edit`}
+                >
+                  Edit
+                </Button>
+              ) : (
+                <Button
+                  variant="primary"
+                  fullWidth
+                  className="max-lg:mt-8 py-3 text-lg"
+                  navigateTo={canEditJob ? `/jobs/${job._id}/edit` : "#"}
+                >
+                  {canEditJob ? "Edit" : "Apply Now"}
+                </Button>
+              )}
 
               <div className="lg:mt-8 space-y-6">
                 <div className="flex items-start gap-4">

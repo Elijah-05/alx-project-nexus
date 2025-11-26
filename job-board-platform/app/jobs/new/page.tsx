@@ -98,12 +98,12 @@ export default function NewJobPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#eef6ff] flex items-start justify-center pt-32 pb-12 px-4">
-      <div className="w-full max-w-6xl">
+    <div className="min-h-screen bg-[#eef6ff] flex items-start justify-center pt-24 lg:pt-32 pb-12">
+      <div className="w-full max-w-7xl  px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row gap-6 mb-8">
           <div>
-            <h1 className="text-3xl font-semibold">Create a New Job</h1>
+            <h1 className="text-2xl md:text-3xl font-semibold">Create a New Job</h1>
             <p className="text-gray-600 mt-1">
               Provide job information and choose one or more experience levels.
             </p>
@@ -113,7 +113,7 @@ export default function NewJobPage() {
         {/* Form */}
         <form
           onSubmit={handleSubmit}
-          className="bg-white rounded-xl shadow-md p-6 md:p-8"
+          className="bg-white rounded-xl shadow-md p-4 sm:p-6 md:p-8"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Title */}
