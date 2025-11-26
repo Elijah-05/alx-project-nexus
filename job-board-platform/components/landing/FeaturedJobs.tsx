@@ -2,7 +2,7 @@
 
 import { ArrowRight } from "lucide-react";
 import Button from "../common/Button";
-import JobCard from "../JobCard";
+import JobCard from "../cards/JobCard";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -48,7 +48,9 @@ export default function FeaturedJobs() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-end mb-10">
           <div>
-            <h2 className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-900">Featured Jobs</h2>
+            <h2 className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-900">
+              Featured Jobs
+            </h2>
             <p className="text-gray-500">Hand-picked opportunities for you.</p>
           </div>
           <Link

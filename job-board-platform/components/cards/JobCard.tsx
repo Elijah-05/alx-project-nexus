@@ -1,12 +1,16 @@
 import { formatMoney, lighten, randomHexColor, timeAgo } from "@/utils";
 import { CircleDollarSign, Clock3, MapPin } from "lucide-react";
-import Button from "./common/Button";
+import Button from "../common/Button";
 import Link from "next/link";
+import { useAuth } from "@/context/AuthProvider";
 
 export default function JobCard({ job }: { job: JobCardProps }) {
   const base = randomHexColor();
   const bg = lighten(base, 0.1); // very light version
   const text = base;
+  const { user } = useAuth();
+
+  const canEditJob = user && job && user._id === job.createdBy;
 
   return (
     <Link href={`/jobs/${job._id}`} className="block group">
@@ -61,9 +65,19 @@ export default function JobCard({ job }: { job: JobCardProps }) {
               {timeAgo(job.postedAt)}
             </span>
           </div>
-          <Button variant="primary" className="max-xs:mt-4 max-sm:text-sm">
-            Apply
-          </Button>
+
+          {canEditJob ? (
+            <Button
+              variant="ghost"
+              className="max-xs:mt-4 border border-primary"
+            >
+              Edit
+            </Button>
+          ) : (
+            <Button variant="primary" className="max-xs:mt-4 max-sm:text-sm">
+              Apply
+            </Button>
+          )}
         </div>
       </div>
     </Link>

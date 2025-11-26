@@ -18,8 +18,6 @@ export default function Page() {
   const id = params.id;
   const { user } = useAuth();
 
-  console.log("User in Job Detail Page:", user, job);
-
   const canEditJob = user && job && user._id === job.createdBy;
 
   const fetchJobs = useCallback(async () => {
@@ -148,7 +146,7 @@ export default function Page() {
                 <Button
                   variant="primary"
                   fullWidth
-                  className="max-lg:mt-8 py-3 text-lg"
+                  className="max-lg:mt-8 py-3 text-lg sm:max-w-xs"
                   navigateTo={canEditJob ? `/jobs/${job._id}/edit` : "#"}
                 >
                   {canEditJob ? "Edit" : "Apply Now"}

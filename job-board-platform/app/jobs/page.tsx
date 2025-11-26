@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import JobCard from "@/components/JobCard";
+import JobCard from "@/components/cards/JobCard";
 import FilterSidebar from "@/components/job-list/FilterSidebar";
 import MobileFilterDrawer from "@/components/job-list/MobileFilterDrawer";
 import Image from "next/image";

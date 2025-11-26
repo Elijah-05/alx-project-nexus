@@ -1,5 +1,5 @@
 import { CATEGORIES } from "@/constants";
-import CategoryCard from "../CategoryCard";
+import CategoryCard from "../cards/CategoryCard";
 
 
 export default function CategorySection() {
